@@ -3,9 +3,9 @@ spring:
     name: ticktick-clone
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/ticktick
-    username: guhannadin
-    password: admin
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/ticktick}
+    username: ${SPRING_DATASOURCE_USERNAME:guhannadin}
+    password: ${SPRING_DATASOURCE_PASSWORD:admin}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -18,9 +18,9 @@ spring:
     open-in-view: false
 
   redis:
-    host: localhost
-    port: 6379
-    password:
+    host: ${SPRING_REDIS_HOST:localhost}
+    port: ${SPRING_REDIS_PORT:6379}
+    password: ${SPRING_REDIS_PASSWORD:}
     timeout: 60000
 
   mail:
