@@ -20,10 +20,5 @@ WORKDIR /app
 # Copy backend jar
 COPY --from=backend-build /app/target/*.jar app.jar
 
-# Copy frontend build to a static location (if serving from Spring Boot or Nginx)
-# For this setup, we'll assume a simple deployment where Spring Boot might serve static files 
-# OR we use a separate Nginx container. 
-# Let's stick to a Docker Compose approach where we have separate containers for clarity.
-
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-XX:MaxRAMPercentage=75.0", "-jar", "app.jar"]
