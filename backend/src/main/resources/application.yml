@@ -1,0 +1,81 @@
+spring:
+  application:
+    name: ticktick-clone
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ticktick
+    username: guhannadin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    timeout: 60000
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            scope:
+              - email
+              - profile
+            redirect-uri: "{baseUrl}/oauth2/callback/{registrationId}"
+        provider:
+          google:
+            authorization-uri: https://accounts.google.com/o/oauth2/v2/auth
+            token-uri: https://oauth2.googleapis.com/token
+            user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
+
+server:
+  port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
+    expiration: 86400000         # 24 hours
+    refresh-expiration: 604800000 # 7 days
+
+  cors:
+    allowed-origins: http://localhost:3000,http://localhost:5173
+
+  # ✅ REQUIRED FIX — now a single string, not a list
+  oauth2:
+    authorized-redirect-uris: http://localhost:3000/oauth2/redirect,http://localhost:5173/oauth2/redirect
+
+  firebase:
+    config-path: ${FIREBASE_CONFIG_PATH:classpath:firebase-config.json}
+
+logging:
+  level:
+    com.ticktick: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG

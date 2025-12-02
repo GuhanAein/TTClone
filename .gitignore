@@ -1,0 +1,31 @@
+# System Files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*.iml
+
+# Backend (Java/Spring Boot)
+backend/target/
+backend/*.log
+backend/help.md
+*.class
+*.jar
+*.war
+
+# Frontend (Node/React)
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/*.local
+frontend/.env
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+# Docker
+docker-compose.override.yml
