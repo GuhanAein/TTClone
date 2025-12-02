@@ -65,7 +65,7 @@ app:
     refresh-expiration: 604800000 # 7 days
 
   cors:
-    allowed-origins: http://localhost:3000,http://localhost:5173
+    allowed-origins: ${APP_CORS_ALLOWED_ORIGINS:http://localhost:3000,http://localhost:5173}
 
   # ✅ REQUIRED FIX — now a single string, not a list
   oauth2:
